@@ -1,0 +1,421 @@
+/usr/local/bin/python3.7 /Users/jeffreylo/PycharmProjects/CPSC-483-ID3-Tree-Classification/id3.py
+
+	---------- Performing ID3 for: play, Layer = 0 ----------
+
+	p = 5/14
+	p = 9/14
+	E(S)= - (0.35714285714285715)log2(0.35714285714285715) - (0.6428571428571429)log2(0.6428571428571429)
+	E(S_)= 0.9402859586706311
+	Entropy of play indicates information content can be gained
+
+	IG for outlook
+	outlook probabilities: : {'sunny': 0.35714285714285715, 'overcast': 0.2857142857142857, 'rainy': 0.35714285714285715}
+	E(S_outlook, sunny)
+		total for outlook, sunny: 5
+		subset for sunny, no: 3/5 = 0.6
+		subset for sunny, yes: 2/5 = 0.4
+		E(S)= - (0.6log2(0.6) - (0.4log2(0.4)
+	E(S_outlook, sunny)= 0.9709505944546686
+	E(S_outlook, overcast) 
+		total for outlook, overcast: 4
+		subset for overcast, no: 0/4 = 0.0
+		subset for overcast, yes: 4/4 = 1.0
+		ignoring 0 probability
+		E(S)= - (1.0log2(1.0)
+	E(S_outlook, overcast)= 0.0
+	E(S_outlook, rainy)
+		total for outlook, rainy: 5
+		subset for rainy, no: 2/5 = 0.4
+		subset for rainy, yes: 3/5 = 0.6
+		E(S)= - (0.4log2(0.4) - (0.6log2(0.6)
+	E(S_outlook, rainy)= 0.9709505944546686
+	IG(S_play, outlook)= 0.9402859586706311 - (0.35714285714285715)0.9709505944546686 - (0.2857142857142857)0.0 - (0.35714285714285715)0.9709505944546686
+	IG(S_play, outlook)= 0.24674981977443933
+
+	IG for temp
+	temp probabilities: : {'hot': 0.2857142857142857, 'mild': 0.42857142857142855, 'cool': 0.2857142857142857}
+	E(S_temp, hot)
+		total for temp, hot: 4
+		subset for hot, no: 2/4 = 0.5
+		subset for hot, yes: 2/4 = 0.5
+		E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
+	E(S_temp, hot)= 1.0
+	E(S_temp, mild)
+		total for temp, mild: 6
+		subset for mild, no: 2/6 = 0.3333333333333333
+		subset for mild, yes: 4/6 = 0.6666666666666666
+		E(S)= - (0.3333333333333333log2(0.3333333333333333) - (0.6666666666666666log2(0.6666666666666666)
+	E(S_temp, mild)= 0.9182958340544896
+	E(S_temp, cool)
+		total for temp, cool: 4
+		subset for cool, no: 1/4 = 0.25
+		subset for cool, yes: 3/4 = 0.75
+		E(S)= - (0.25log2(0.25) - (0.75log2(0.75)
+	E(S_temp, cool)= 0.8112781244591328
+	IG(S_play, temp)= 0.9402859586706311 - (0.2857142857142857)1.0 - (0.42857142857142855)0.9182958340544896 - (0.2857142857142857)0.8112781244591328
+	IG(S_play, temp)= 0.02922256565895487
+
+	IG for humidity
+	humidity probabilities: : {'high': 0.5, 'normal': 0.5}
+	E(S_humidity, high)
+		total for humidity, high: 7
+		subset for high, no: 4/7 = 0.5714285714285714
+		subset for high, yes: 3/7 = 0.42857142857142855
+		E(S)= - (0.5714285714285714log2(0.5714285714285714) - (0.42857142857142855log2(0.42857142857142855)
+	E(S_humidity, high)= 0.9852281360342515
+	E(S_humidity, normal)
+		total for humidity, normal: 7
+		subset for normal, no: 1/7 = 0.14285714285714285
+		subset for normal, yes: 6/7 = 0.8571428571428571
+		E(S)= - (0.14285714285714285log2(0.14285714285714285) - (0.8571428571428571log2(0.8571428571428571)
+	E(S_humidity, normal)= 0.5916727785823275
+	IG(S_play, humidity)= 0.9402859586706311 - (0.5)0.9852281360342515 - (0.5)0.5916727785823275
+	IG(S_play, humidity)= 0.15183550136234164
+
+	IG for windy
+	windy probabilities: : {False: 0.5714285714285714, True: 0.42857142857142855}
+	E(S_windy, False)
+		total for windy, False: 8
+		subset for False, no: 2/8 = 0.25
+		subset for False, yes: 6/8 = 0.75
+		E(S)= - (0.25log2(0.25) - (0.75log2(0.75)
+	E(S_windy, False)= 0.8112781244591328
+	E(S_windy, True)
+		total for windy, True: 6
+		subset for True, no: 3/6 = 0.5
+		subset for True, yes: 3/6 = 0.5
+		E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
+	E(S_windy, True)= 1.0
+	IG(S_play, windy)= 0.9402859586706311 - (0.5714285714285714)0.8112781244591328 - (0.42857142857142855)1.0
+	IG(S_play, windy)= 0.048127030408269544
+
+	Info Gains:
+		outlook: 0.24674981977443933
+		temp: 0.02922256565895487
+		humidity: 0.15183550136234164
+		windy: 0.048127030408269544
+	Greatest is outlook
+	Adding outlook as root
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+
+
+	----- Creating subset for branch sunny -----
+
+		---------- Performing ID3 for: outlook_sunny, Layer = 1 ----------
+
+		p = 3/5
+		p = 2/5
+		E(S)= - (0.6)log2(0.6) - (0.4)log2(0.4)
+		E(S_outlook_sunny)= 0.9709505944546686
+		Entropy of play indicates information content can be gained
+
+		IG for outlook
+		outlook probabilities: : {'sunny': 0.35714285714285715}
+		E(S_outlook, sunny)
+			total for outlook, sunny: 5
+			subset for sunny, no: 3/5 = 0.6
+			subset for sunny, yes: 2/5 = 0.4
+			E(S)= - (0.6log2(0.6) - (0.4log2(0.4)
+		E(S_outlook, sunny)= 0.9709505944546686
+		IG(S_play, outlook)= 0.9709505944546686 - (0.35714285714285715)0.9709505944546686
+		IG(S_play, outlook)= 0.6241825250065727
+
+		IG for temp
+		temp probabilities: : {'hot': 0.14285714285714285, 'mild': 0.14285714285714285, 'cool': 0.07142857142857142}
+		E(S_temp, hot)
+			total for temp, hot: 2
+			subset for hot, no: 2/2 = 1.0
+			subset for hot, yes: 0/2 = 0.0
+			ignoring 0 probability
+			E(S)= - (1.0log2(1.0)
+		E(S_temp, hot)= 0.0
+		E(S_temp, mild)
+			total for temp, mild: 2
+			subset for mild, no: 1/2 = 0.5
+			subset for mild, yes: 1/2 = 0.5
+			E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
+		E(S_temp, mild)= 1.0
+		E(S_temp, cool)
+			total for temp, cool: 1
+			subset for cool, no: 0/1 = 0.0
+			subset for cool, yes: 1/1 = 1.0
+			ignoring 0 probability
+			E(S)= - (1.0log2(1.0)
+		E(S_temp, cool)= 0.0
+		IG(S_play, temp)= 0.9709505944546686 - (0.14285714285714285)0.0 - (0.14285714285714285)1.0 - (0.07142857142857142)0.0
+		IG(S_play, temp)= 0.8280934515975258
+
+		IG for humidity
+		humidity probabilities: : {'high': 0.21428571428571427, 'normal': 0.14285714285714285}
+		E(S_humidity, high)
+			total for humidity, high: 3
+			subset for high, no: 3/3 = 1.0
+			subset for high, yes: 0/3 = 0.0
+			ignoring 0 probability
+			E(S)= - (1.0log2(1.0)
+		E(S_humidity, high)= 0.0
+		E(S_humidity, normal)
+			total for humidity, normal: 2
+			subset for normal, no: 0/2 = 0.0
+			subset for normal, yes: 2/2 = 1.0
+			ignoring 0 probability
+			E(S)= - (1.0log2(1.0)
+		E(S_humidity, normal)= 0.0
+		IG(S_play, humidity)= 0.9709505944546686 - (0.21428571428571427)0.0 - (0.14285714285714285)0.0
+		IG(S_play, humidity)= 0.9709505944546686
+
+		IG for windy
+		windy probabilities: : {False: 0.21428571428571427, True: 0.14285714285714285}
+		E(S_windy, False)
+			total for windy, False: 3
+			subset for False, no: 2/3 = 0.6666666666666666
+			subset for False, yes: 1/3 = 0.3333333333333333
+			E(S)= - (0.6666666666666666log2(0.6666666666666666) - (0.3333333333333333log2(0.3333333333333333)
+		E(S_windy, False)= 0.9182958340544896
+		E(S_windy, True)
+			total for windy, True: 2
+			subset for True, no: 1/2 = 0.5
+			subset for True, yes: 1/2 = 0.5
+			E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
+		E(S_windy, True)= 1.0
+		IG(S_play, windy)= 0.9709505944546686 - (0.21428571428571427)0.9182958340544896 - (0.14285714285714285)1.0
+		IG(S_play, windy)= 0.6313157728715637
+
+		Info Gains:
+			outlook: 0.6241825250065727
+			temp: 0.8280934515975258
+			humidity: 0.9709505944546686
+			windy: 0.6313157728715637
+		Greatest is humidity
+		Adding humidity to tree
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+└── Node('/outlook/sunny')
+    └── Node('/outlook/sunny/humidity')
+
+
+		----- Creating subset for branch high -----
+
+			---------- Performing ID3 for: humidity_high, Layer = 2 ----------
+
+			p = 3/3
+			E(S)= - (1.0)log2(1.0)
+			E(S_humidity_high)= 0.0
+			No information to gain from this set
+
+			leaf node 'no' added to branch high
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+└── Node('/outlook/sunny')
+    └── Node('/outlook/sunny/humidity')
+        └── Node('/outlook/sunny/humidity/high')
+            └── Node('/outlook/sunny/humidity/high/no')
+
+
+		----- Creating subset for branch normal -----
+
+			---------- Performing ID3 for: humidity_normal, Layer = 2 ----------
+
+			p = 2/2
+			E(S)= - (1.0)log2(1.0)
+			E(S_humidity_normal)= 0.0
+			No information to gain from this set
+
+			leaf node 'yes' added to branch normal
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+└── Node('/outlook/sunny')
+    └── Node('/outlook/sunny/humidity')
+        ├── Node('/outlook/sunny/humidity/high')
+        │   └── Node('/outlook/sunny/humidity/high/no')
+        └── Node('/outlook/sunny/humidity/normal')
+            └── Node('/outlook/sunny/humidity/normal/yes')
+
+
+	----- Creating subset for branch overcast -----
+
+		---------- Performing ID3 for: outlook_overcast, Layer = 1 ----------
+
+		p = 4/4
+		E(S)= - (1.0)log2(1.0)
+		E(S_outlook_overcast)= 0.0
+		No information to gain from this set
+
+		leaf node 'yes' added to branch overcast
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+├── Node('/outlook/sunny')
+│   └── Node('/outlook/sunny/humidity')
+│       ├── Node('/outlook/sunny/humidity/high')
+│       │   └── Node('/outlook/sunny/humidity/high/no')
+│       └── Node('/outlook/sunny/humidity/normal')
+│           └── Node('/outlook/sunny/humidity/normal/yes')
+└── Node('/outlook/overcast')
+    └── Node('/outlook/overcast/yes')
+
+
+	----- Creating subset for branch rainy -----
+
+		---------- Performing ID3 for: outlook_rainy, Layer = 1 ----------
+
+		p = 3/5
+		p = 2/5
+		E(S)= - (0.6)log2(0.6) - (0.4)log2(0.4)
+		E(S_outlook_rainy)= 0.9709505944546686
+		Entropy of play indicates information content can be gained
+
+		IG for outlook
+		outlook probabilities: : {'rainy': 0.35714285714285715}
+		E(S_outlook, rainy)
+			total for outlook, rainy: 5
+			subset for rainy, yes: 3/5 = 0.6
+			subset for rainy, no: 2/5 = 0.4
+			E(S)= - (0.6log2(0.6) - (0.4log2(0.4)
+		E(S_outlook, rainy)= 0.9709505944546686
+		IG(S_play, outlook)= 0.9709505944546686 - (0.35714285714285715)0.9709505944546686
+		IG(S_play, outlook)= 0.6241825250065727
+
+		IG for temp
+		temp probabilities: : {'mild': 0.21428571428571427, 'cool': 0.14285714285714285}
+		E(S_temp, mild)
+			total for temp, mild: 3
+			subset for mild, yes: 2/3 = 0.6666666666666666
+			subset for mild, no: 1/3 = 0.3333333333333333
+			E(S)= - (0.6666666666666666log2(0.6666666666666666) - (0.3333333333333333log2(0.3333333333333333)
+		E(S_temp, mild)= 0.9182958340544896
+		E(S_temp, cool)
+			total for temp, cool: 2
+			subset for cool, yes: 1/2 = 0.5
+			subset for cool, no: 1/2 = 0.5
+			E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
+		E(S_temp, cool)= 1.0
+		IG(S_play, temp)= 0.9709505944546686 - (0.21428571428571427)0.9182958340544896 - (0.14285714285714285)1.0
+		IG(S_play, temp)= 0.6313157728715637
+
+		IG for humidity
+		humidity probabilities: : {'high': 0.14285714285714285, 'normal': 0.21428571428571427}
+		E(S_humidity, high)
+			total for humidity, high: 2
+			subset for high, yes: 1/2 = 0.5
+			subset for high, no: 1/2 = 0.5
+			E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
+		E(S_humidity, high)= 1.0
+		E(S_humidity, normal)
+			total for humidity, normal: 3
+			subset for normal, yes: 2/3 = 0.6666666666666666
+			subset for normal, no: 1/3 = 0.3333333333333333
+			E(S)= - (0.6666666666666666log2(0.6666666666666666) - (0.3333333333333333log2(0.3333333333333333)
+		E(S_humidity, normal)= 0.9182958340544896
+		IG(S_play, humidity)= 0.9709505944546686 - (0.14285714285714285)1.0 - (0.21428571428571427)0.9182958340544896
+		IG(S_play, humidity)= 0.6313157728715637
+
+		IG for windy
+		windy probabilities: : {False: 0.21428571428571427, True: 0.14285714285714285}
+		E(S_windy, False)
+			total for windy, False: 3
+			subset for False, yes: 3/3 = 1.0
+			subset for False, no: 0/3 = 0.0
+			ignoring 0 probability
+			E(S)= - (1.0log2(1.0)
+		E(S_windy, False)= 0.0
+		E(S_windy, True)
+			total for windy, True: 2
+			subset for True, yes: 0/2 = 0.0
+			subset for True, no: 2/2 = 1.0
+			ignoring 0 probability
+			E(S)= - (1.0log2(1.0)
+		E(S_windy, True)= 0.0
+		IG(S_play, windy)= 0.9709505944546686 - (0.21428571428571427)0.0 - (0.14285714285714285)0.0
+		IG(S_play, windy)= 0.9709505944546686
+
+		Info Gains:
+			outlook: 0.6241825250065727
+			temp: 0.6313157728715637
+			humidity: 0.6313157728715637
+			windy: 0.9709505944546686
+		Greatest is windy
+		Adding windy to tree
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+├── Node('/outlook/sunny')
+│   └── Node('/outlook/sunny/humidity')
+│       ├── Node('/outlook/sunny/humidity/high')
+│       │   └── Node('/outlook/sunny/humidity/high/no')
+│       └── Node('/outlook/sunny/humidity/normal')
+│           └── Node('/outlook/sunny/humidity/normal/yes')
+├── Node('/outlook/overcast')
+│   └── Node('/outlook/overcast/yes')
+└── Node('/outlook/rainy')
+    └── Node('/outlook/rainy/windy')
+
+
+		----- Creating subset for branch False -----
+
+			---------- Performing ID3 for: windy_False, Layer = 2 ----------
+
+			p = 3/3
+			E(S)= - (1.0)log2(1.0)
+			E(S_windy_False)= 0.0
+			No information to gain from this set
+
+			leaf node 'yes' added to branch False
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+├── Node('/outlook/sunny')
+│   └── Node('/outlook/sunny/humidity')
+│       ├── Node('/outlook/sunny/humidity/high')
+│       │   └── Node('/outlook/sunny/humidity/high/no')
+│       └── Node('/outlook/sunny/humidity/normal')
+│           └── Node('/outlook/sunny/humidity/normal/yes')
+├── Node('/outlook/overcast')
+│   └── Node('/outlook/overcast/yes')
+└── Node('/outlook/rainy')
+    └── Node('/outlook/rainy/windy')
+        └── Node('/outlook/rainy/windy/False')
+            └── Node('/outlook/rainy/windy/False/yes')
+
+
+		----- Creating subset for branch True -----
+
+			---------- Performing ID3 for: windy_True, Layer = 2 ----------
+
+			p = 2/2
+			E(S)= - (1.0)log2(1.0)
+			E(S_windy_True)= 0.0
+			No information to gain from this set
+
+			leaf node 'no' added to branch True
+
+
+------------ R E S U L T I N G  T R E E ------------
+Node('/outlook')
+├── Node('/outlook/sunny')
+│   └── Node('/outlook/sunny/humidity')
+│       ├── Node('/outlook/sunny/humidity/high')
+│       │   └── Node('/outlook/sunny/humidity/high/no')
+│       └── Node('/outlook/sunny/humidity/normal')
+│           └── Node('/outlook/sunny/humidity/normal/yes')
+├── Node('/outlook/overcast')
+│   └── Node('/outlook/overcast/yes')
+└── Node('/outlook/rainy')
+    └── Node('/outlook/rainy/windy')
+        ├── Node('/outlook/rainy/windy/False')
+        │   └── Node('/outlook/rainy/windy/False/yes')
+        └── Node('/outlook/rainy/windy/True')
+            └── Node('/outlook/rainy/windy/True/no')
+

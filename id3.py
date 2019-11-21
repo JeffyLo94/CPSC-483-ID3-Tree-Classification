@@ -32,7 +32,7 @@ class ID3():
             # print(c)
             col_dat = df.loc[:data_shape[0], c]
             self.data_map.update({c: col_dat.tolist()})
-        print(self.data_map)
+        # print(self.data_map)
 
     # Generate a Unique Values Map from the Data Map
     def generate_uvmap(self):
@@ -48,7 +48,7 @@ class ID3():
                     # add new value to map
                     aggregator_obj.update({val: 1})
             self.uv_map.update({key: aggregator_obj})
-        print(self.uv_map)
+        # print(self.uv_map)
 
     def generate_ig_calculation_data(self, target, key):
         pass
@@ -79,12 +79,15 @@ class ID3():
 
     def calc_entropy(self, prob_list, tab=0):
         tabs = self.generate_tabs(tab)
+        work_str = 'E(S)='
         entropy_val = 0
         for p in prob_list:
             if(p > 0):
                 entropy_val -= (p*log2(p))
+                work_str += ' - (' + str(p) + 'log2(' + str(p) + ')'
             else:
                 print(tabs + 'ignoring 0 probability')
+        print(tabs + work_str)
         return entropy_val
 
     def print_entropy(self, k, val, tab=0):
@@ -265,9 +268,5 @@ class ID3():
 # DATA PROCESSING
 # id3 = ID3('data.csv')
 id3 = ID3('tennis.csv')
+# id3 = ID3('random_data.csv')
 id3.performID3()
-# id3.print_tree()
-# # Get unique values
-# uv_dict = unique_values(data_map)
-#
-# entropy(data)
