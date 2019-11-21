@@ -1,0 +1,11 @@
+﻿HAS a JOB,HAS an INSURANCE,VOTES,ACTION
+yes,yes,yes,leave-alone
+yes,no,yes,leave-alone
+yes,no,no,force-into
+no,no,yes,leave-alone
+no,no,no,force-into
+yes,yes,yes,leave-alone
+yes,no,yes,leave-alone
+yes,no,no,force-into
+no,no,yes,leave-alone
+no,no,no,force-into
