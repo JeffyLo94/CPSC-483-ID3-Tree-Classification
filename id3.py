@@ -67,7 +67,6 @@ class ID3():
         total = self.df.shape[0]
 
         for k in keys:
-            # TODO: check for 0 if necessary?
             # Calculate part of entropy
             prob = dat[k]/total
             print(tabs + 'p = ' + str(dat[k]) + '/' + str(total))
@@ -219,7 +218,7 @@ class ID3():
         if entropy_of_target > 0:
             self.print_map(ig_map, "Info Gains", tab)
             max_val = max(ig_map, key=ig_map.get)
-            print(tabs + 'Greatest is ' + max_val)
+            print(tabs + 'Greatest IG is ' + max_val)
         else:
             max_val = feature_val
 

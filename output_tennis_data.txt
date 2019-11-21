@@ -16,7 +16,7 @@
 		subset for sunny, yes: 2/5 = 0.4
 		E(S)= - (0.6log2(0.6) - (0.4log2(0.4)
 	E(S_outlook, sunny)= 0.9709505944546686
-	E(S_outlook, overcast) 
+	E(S_outlook, overcast)
 		total for outlook, overcast: 4
 		subset for overcast, no: 0/4 = 0.0
 		subset for overcast, yes: 4/4 = 1.0
@@ -31,29 +31,6 @@
 	E(S_outlook, rainy)= 0.9709505944546686
 	IG(S_play, outlook)= 0.9402859586706311 - (0.35714285714285715)0.9709505944546686 - (0.2857142857142857)0.0 - (0.35714285714285715)0.9709505944546686
 	IG(S_play, outlook)= 0.24674981977443933
-
-	IG for temp
-	temp probabilities: : {'hot': 0.2857142857142857, 'mild': 0.42857142857142855, 'cool': 0.2857142857142857}
-	E(S_temp, hot)
-		total for temp, hot: 4
-		subset for hot, no: 2/4 = 0.5
-		subset for hot, yes: 2/4 = 0.5
-		E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
-	E(S_temp, hot)= 1.0
-	E(S_temp, mild)
-		total for temp, mild: 6
-		subset for mild, no: 2/6 = 0.3333333333333333
-		subset for mild, yes: 4/6 = 0.6666666666666666
-		E(S)= - (0.3333333333333333log2(0.3333333333333333) - (0.6666666666666666log2(0.6666666666666666)
-	E(S_temp, mild)= 0.9182958340544896
-	E(S_temp, cool)
-		total for temp, cool: 4
-		subset for cool, no: 1/4 = 0.25
-		subset for cool, yes: 3/4 = 0.75
-		E(S)= - (0.25log2(0.25) - (0.75log2(0.75)
-	E(S_temp, cool)= 0.8112781244591328
-	IG(S_play, temp)= 0.9402859586706311 - (0.2857142857142857)1.0 - (0.42857142857142855)0.9182958340544896 - (0.2857142857142857)0.8112781244591328
-	IG(S_play, temp)= 0.02922256565895487
 
 	IG for humidity
 	humidity probabilities: : {'high': 0.5, 'normal': 0.5}
@@ -91,7 +68,6 @@
 
 	Info Gains:
 		outlook: 0.24674981977443933
-		temp: 0.02922256565895487
 		humidity: 0.15183550136234164
 		windy: 0.048127030408269544
 	Greatest is outlook
@@ -122,31 +98,6 @@ Node('/outlook')
 		E(S_outlook, sunny)= 0.9709505944546686
 		IG(S_play, outlook)= 0.9709505944546686 - (0.35714285714285715)0.9709505944546686
 		IG(S_play, outlook)= 0.6241825250065727
-
-		IG for temp
-		temp probabilities: : {'hot': 0.14285714285714285, 'mild': 0.14285714285714285, 'cool': 0.07142857142857142}
-		E(S_temp, hot)
-			total for temp, hot: 2
-			subset for hot, no: 2/2 = 1.0
-			subset for hot, yes: 0/2 = 0.0
-			ignoring 0 probability
-			E(S)= - (1.0log2(1.0)
-		E(S_temp, hot)= 0.0
-		E(S_temp, mild)
-			total for temp, mild: 2
-			subset for mild, no: 1/2 = 0.5
-			subset for mild, yes: 1/2 = 0.5
-			E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
-		E(S_temp, mild)= 1.0
-		E(S_temp, cool)
-			total for temp, cool: 1
-			subset for cool, no: 0/1 = 0.0
-			subset for cool, yes: 1/1 = 1.0
-			ignoring 0 probability
-			E(S)= - (1.0log2(1.0)
-		E(S_temp, cool)= 0.0
-		IG(S_play, temp)= 0.9709505944546686 - (0.14285714285714285)0.0 - (0.14285714285714285)1.0 - (0.07142857142857142)0.0
-		IG(S_play, temp)= 0.8280934515975258
 
 		IG for humidity
 		humidity probabilities: : {'high': 0.21428571428571427, 'normal': 0.14285714285714285}
@@ -186,7 +137,6 @@ Node('/outlook')
 
 		Info Gains:
 			outlook: 0.6241825250065727
-			temp: 0.8280934515975258
 			humidity: 0.9709505944546686
 			windy: 0.6313157728715637
 		Greatest is humidity
@@ -286,23 +236,6 @@ Node('/outlook')
 		IG(S_play, outlook)= 0.9709505944546686 - (0.35714285714285715)0.9709505944546686
 		IG(S_play, outlook)= 0.6241825250065727
 
-		IG for temp
-		temp probabilities: : {'mild': 0.21428571428571427, 'cool': 0.14285714285714285}
-		E(S_temp, mild)
-			total for temp, mild: 3
-			subset for mild, yes: 2/3 = 0.6666666666666666
-			subset for mild, no: 1/3 = 0.3333333333333333
-			E(S)= - (0.6666666666666666log2(0.6666666666666666) - (0.3333333333333333log2(0.3333333333333333)
-		E(S_temp, mild)= 0.9182958340544896
-		E(S_temp, cool)
-			total for temp, cool: 2
-			subset for cool, yes: 1/2 = 0.5
-			subset for cool, no: 1/2 = 0.5
-			E(S)= - (0.5log2(0.5) - (0.5log2(0.5)
-		E(S_temp, cool)= 1.0
-		IG(S_play, temp)= 0.9709505944546686 - (0.21428571428571427)0.9182958340544896 - (0.14285714285714285)1.0
-		IG(S_play, temp)= 0.6313157728715637
-
 		IG for humidity
 		humidity probabilities: : {'high': 0.14285714285714285, 'normal': 0.21428571428571427}
 		E(S_humidity, high)
@@ -341,7 +274,6 @@ Node('/outlook')
 
 		Info Gains:
 			outlook: 0.6241825250065727
-			temp: 0.6313157728715637
 			humidity: 0.6313157728715637
 			windy: 0.9709505944546686
 		Greatest is windy
