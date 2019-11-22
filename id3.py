@@ -108,7 +108,7 @@ class ID3():
             select_frame = self.df[[feature, target]][(self.df[feature] == feat_val) & (self.df[target] == v)]
             # print(select_frame)
             num_feat_val = select_frame.shape[0]
-            print(tabs + 'subset for ' + str(feat_val) + ', ' + v + ': ' + str(num_feat_val) + '/' + str(total) + ' = ' + str(num_feat_val/total))
+            print(tabs + 'subset for ' + str(feat_val) + ', ' + str(v) + ': ' + str(num_feat_val) + '/' + str(total) + ' = ' + str(num_feat_val/total))
             subset.append((num_feat_val/total))
         return subset
 
@@ -116,6 +116,7 @@ class ID3():
     def info_gain(self, feature, target, target_entropy, tab=0):
         feature_entropies = []
         # 1. Get Probabilities
+        print(self.uv_map[feature])
         prob_data = self.uv_map[feature]
         # print(prob_data)
         prob_keys = list(prob_data)
@@ -180,13 +181,16 @@ class ID3():
     #   2. Partition ("split") the set, S into subsets using the attribute for which the resulting entropy after splitting is minimized; or, equivalently, information gain is maximum.
     #   3. Make a decision tree node containing that attribute.
     #   4. Perform the steps recursively on subsets using the remaining attributes, adding branches and connecting nodes.
-    def performID3(self, layer=0, target = None, feature_val=None, title='', parent_set=pd.DataFrame(), child_branch=0, parent_node=None):
+    def performID3(self, layer=0, target = None, feature_val=None, title='', parent_set=pd.DataFrame(), child_branch=0, parent_node=None, subset_labels=None):
         tab = layer + 1
         tabs = self.generate_tabs(tab)
         curr_node = None
 
         # Get entropy of overall set
-        length = len(self.labels)
+        if subset_labels == None:
+            length = len(self.labels)
+        else:
+            length = len(subset_labels)
         # print(length)
         # print(self.labels[length-1])
         if target == None:
@@ -206,13 +210,28 @@ class ID3():
             print(tabs + 'No information to gain from this set')
         else:
             print(tabs + 'Entropy of ' + target + ' indicates information content can be gained ')
-            for i in range(length-1):
-                # Calc Info Gain
-                feature = self.labels[i]
-                print('\n' + tabs + 'IG for ' + feature)
-                ig = self.info_gain(feature, target, entropy_of_target, tab)
-                self.print_info_gain(target, feature, ig, tab)
-                ig_map.update({feature: ig})
+            if(length-1 == 0):
+                for i in range(1):
+                    # Calc Info Gain
+                    if subset_labels == None:
+                        feature = self.labels[i]
+                    else:
+                        feature = subset_labels[i]
+                    print('\n' + tabs + 'IG for ' + feature)
+                    ig = self.info_gain(feature, target, entropy_of_target, tab)
+                    self.print_info_gain(target, feature, ig, tab)
+                    ig_map.update({feature: ig})
+            else:
+                for i in range(length-1):
+                    # Calc Info Gain
+                    if subset_labels == None:
+                        feature = self.labels[i]
+                    else:
+                        feature = subset_labels[i]
+                    print('\n' + tabs + 'IG for ' + feature)
+                    ig = self.info_gain(feature, target, entropy_of_target, tab)
+                    self.print_info_gain(target, feature, ig, tab)
+                    ig_map.update({feature: ig})
         print('')
 
         if entropy_of_target > 0:
@@ -242,19 +261,31 @@ class ID3():
         if entropy_of_target > 0:
             child_labels = self.get_label_values(max_val)
             possible_children = len(self.get_label_values(max_val))
+            print('possible Children' + str(child_labels))
             for i in range(possible_children):
                 print('\n\n' + tabs + '----- Creating subset for branch ' + str(child_labels[i]) + ' -----')
                 if parent_set.empty:
                     self.df = self.orig_df
                 else:
                     self.df = parent_set
+                    # remove column of parent data
                 self.df = self.df[self.df[max_val] == child_labels[i]]
                 self.df.reset_index(inplace=True, drop=True)
-                # print(self.df)
+                # print('before')
+                print(self.df)
                 self.generate_datamap(self.df)
                 self.generate_uvmap()
+                self.df = self.df.drop([max_val], axis=1)
+                # print('after')
+                # print(self.df)
+                # print('list: ' + str(list(self.data_map)))
+                newLabels = list(self.data_map)
+                # print(str(max_val))
+                # print(newLabels.index(max_val))
+                newLabels.remove(max_val)
+                print('Labels to use: ' + str(newLabels))
                 temp = Node(str(child_labels[i]), parent=curr_node)
-                self.performID3(layer+1, target, feature_val=child_labels[i], title=max_val+'_'+str(child_labels[i]), parent_set= self.df, child_branch=i, parent_node=temp)
+                self.performID3(layer+1, target, feature_val=child_labels[i], title=max_val+'_'+str(child_labels[i]), parent_set= self.df, child_branch=i, parent_node=temp, subset_labels=newLabels)
         else:
             # print(list(self.uv_map[target])[0])
             print(tabs + 'leaf node \'' + str(list(self.uv_map[target])[0]) + '\' added to branch ' + str(max_val))
@@ -265,7 +296,9 @@ class ID3():
 # M A I N
 
 # DATA PROCESSING
-# id3 = ID3('data.csv')
-id3 = ID3('tennis.csv')
+id3 = ID3('data.csv')
+# id3 = ID3('tennis.csv')
 # id3 = ID3('random_data.csv')
+# id3 = ID3('processed.cleveland.csv')
+# id3 = ID3('titanic.csv')
 id3.performID3()

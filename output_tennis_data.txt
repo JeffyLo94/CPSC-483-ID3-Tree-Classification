@@ -1,4 +1,7 @@
-/usr/local/bin/python3.7 /Users/jeffreylo/PycharmProjects/CPSC-483-ID3-Tree-Classification/id3.py
+/usr/local/bin/python3.7 "/Applications/PyCharm CE.app/Contents/helpers/pydev/pydevd.py" --multiproc --qt-support=auto --client 127.0.0.1 --port 53256 --file /Users/jeffreylo/PycharmProjects/CPSC-483-ID3-Tree-Classification/id3.py
+pydev debugger: process 33179 is connecting
+
+Connected to pydev debugger (build 182.4129.34)
 
 	---------- Performing ID3 for: play, Layer = 0 ----------
 
@@ -9,6 +12,7 @@
 	Entropy of play indicates information content can be gained
 
 	IG for outlook
+{'sunny': 5, 'overcast': 4, 'rainy': 5}
 	outlook probabilities: : {'sunny': 0.35714285714285715, 'overcast': 0.2857142857142857, 'rainy': 0.35714285714285715}
 	E(S_outlook, sunny)
 		total for outlook, sunny: 5
@@ -33,6 +37,7 @@
 	IG(S_play, outlook)= 0.24674981977443933
 
 	IG for humidity
+{'high': 7, 'normal': 7}
 	humidity probabilities: : {'high': 0.5, 'normal': 0.5}
 	E(S_humidity, high)
 		total for humidity, high: 7
@@ -50,6 +55,7 @@
 	IG(S_play, humidity)= 0.15183550136234164
 
 	IG for windy
+{False: 8, True: 6}
 	windy probabilities: : {False: 0.5714285714285714, True: 0.42857142857142855}
 	E(S_windy, False)
 		total for windy, False: 8
@@ -70,15 +76,23 @@
 		outlook: 0.24674981977443933
 		humidity: 0.15183550136234164
 		windy: 0.048127030408269544
-	Greatest is outlook
+	Greatest IG is outlook
 	Adding outlook as root
 
 
 ------------ R E S U L T I N G  T R E E ------------
 Node('/outlook')
+possible Children['sunny', 'overcast', 'rainy']
 
 
 	----- Creating subset for branch sunny -----
+  outlook humidity  windy play
+0   sunny     high  False   no
+1   sunny     high   True   no
+2   sunny     high  False   no
+3   sunny   normal  False  yes
+4   sunny   normal   True  yes
+Labels to use: ['humidity', 'windy', 'play']
 
 		---------- Performing ID3 for: outlook_sunny, Layer = 1 ----------
 
@@ -88,18 +102,8 @@ Node('/outlook')
 		E(S_outlook_sunny)= 0.9709505944546686
 		Entropy of play indicates information content can be gained
 
-		IG for outlook
-		outlook probabilities: : {'sunny': 0.35714285714285715}
-		E(S_outlook, sunny)
-			total for outlook, sunny: 5
-			subset for sunny, no: 3/5 = 0.6
-			subset for sunny, yes: 2/5 = 0.4
-			E(S)= - (0.6log2(0.6) - (0.4log2(0.4)
-		E(S_outlook, sunny)= 0.9709505944546686
-		IG(S_play, outlook)= 0.9709505944546686 - (0.35714285714285715)0.9709505944546686
-		IG(S_play, outlook)= 0.6241825250065727
-
 		IG for humidity
+{'high': 3, 'normal': 2}
 		humidity probabilities: : {'high': 0.21428571428571427, 'normal': 0.14285714285714285}
 		E(S_humidity, high)
 			total for humidity, high: 3
@@ -119,6 +123,7 @@ Node('/outlook')
 		IG(S_play, humidity)= 0.9709505944546686
 
 		IG for windy
+{False: 3, True: 2}
 		windy probabilities: : {False: 0.21428571428571427, True: 0.14285714285714285}
 		E(S_windy, False)
 			total for windy, False: 3
@@ -136,10 +141,9 @@ Node('/outlook')
 		IG(S_play, windy)= 0.6313157728715637
 
 		Info Gains:
-			outlook: 0.6241825250065727
 			humidity: 0.9709505944546686
 			windy: 0.6313157728715637
-		Greatest is humidity
+		Greatest IG is humidity
 		Adding humidity to tree
 
 
@@ -147,9 +151,15 @@ Node('/outlook')
 Node('/outlook')
 └── Node('/outlook/sunny')
     └── Node('/outlook/sunny/humidity')
+possible Children['high', 'normal']
 
 
 		----- Creating subset for branch high -----
+  humidity  windy play
+0     high  False   no
+1     high   True   no
+2     high  False   no
+Labels to use: ['windy', 'play']
 
 			---------- Performing ID3 for: humidity_high, Layer = 2 ----------
 
@@ -170,6 +180,10 @@ Node('/outlook')
 
 
 		----- Creating subset for branch normal -----
+  humidity  windy play
+0   normal  False  yes
+1   normal   True  yes
+Labels to use: ['windy', 'play']
 
 			---------- Performing ID3 for: humidity_normal, Layer = 2 ----------
 
@@ -192,6 +206,12 @@ Node('/outlook')
 
 
 	----- Creating subset for branch overcast -----
+    outlook humidity  windy play
+0  overcast     high  False  yes
+1  overcast   normal   True  yes
+2  overcast     high   True  yes
+3  overcast   normal  False  yes
+Labels to use: ['humidity', 'windy', 'play']
 
 		---------- Performing ID3 for: outlook_overcast, Layer = 1 ----------
 
@@ -216,6 +236,13 @@ Node('/outlook')
 
 
 	----- Creating subset for branch rainy -----
+  outlook humidity  windy play
+0   rainy     high  False  yes
+1   rainy   normal  False  yes
+2   rainy   normal   True   no
+3   rainy   normal  False  yes
+4   rainy     high   True   no
+Labels to use: ['humidity', 'windy', 'play']
 
 		---------- Performing ID3 for: outlook_rainy, Layer = 1 ----------
 
@@ -225,18 +252,8 @@ Node('/outlook')
 		E(S_outlook_rainy)= 0.9709505944546686
 		Entropy of play indicates information content can be gained
 
-		IG for outlook
-		outlook probabilities: : {'rainy': 0.35714285714285715}
-		E(S_outlook, rainy)
-			total for outlook, rainy: 5
-			subset for rainy, yes: 3/5 = 0.6
-			subset for rainy, no: 2/5 = 0.4
-			E(S)= - (0.6log2(0.6) - (0.4log2(0.4)
-		E(S_outlook, rainy)= 0.9709505944546686
-		IG(S_play, outlook)= 0.9709505944546686 - (0.35714285714285715)0.9709505944546686
-		IG(S_play, outlook)= 0.6241825250065727
-
 		IG for humidity
+{'high': 2, 'normal': 3}
 		humidity probabilities: : {'high': 0.14285714285714285, 'normal': 0.21428571428571427}
 		E(S_humidity, high)
 			total for humidity, high: 2
@@ -254,6 +271,7 @@ Node('/outlook')
 		IG(S_play, humidity)= 0.6313157728715637
 
 		IG for windy
+{False: 3, True: 2}
 		windy probabilities: : {False: 0.21428571428571427, True: 0.14285714285714285}
 		E(S_windy, False)
 			total for windy, False: 3
@@ -273,10 +291,9 @@ Node('/outlook')
 		IG(S_play, windy)= 0.9709505944546686
 
 		Info Gains:
-			outlook: 0.6241825250065727
 			humidity: 0.6313157728715637
 			windy: 0.9709505944546686
-		Greatest is windy
+		Greatest IG is windy
 		Adding windy to tree
 
 
@@ -292,9 +309,15 @@ Node('/outlook')
 │   └── Node('/outlook/overcast/yes')
 └── Node('/outlook/rainy')
     └── Node('/outlook/rainy/windy')
+possible Children[False, True]
 
 
 		----- Creating subset for branch False -----
+  humidity  windy play
+0     high  False  yes
+1   normal  False  yes
+2   normal  False  yes
+Labels to use: ['humidity', 'play']
 
 			---------- Performing ID3 for: windy_False, Layer = 2 ----------
 
@@ -323,6 +346,10 @@ Node('/outlook')
 
 
 		----- Creating subset for branch True -----
+  humidity  windy play
+0   normal   True   no
+1     high   True   no
+Labels to use: ['humidity', 'play']
 
 			---------- Performing ID3 for: windy_True, Layer = 2 ----------
 

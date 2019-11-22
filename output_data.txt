@@ -7,6 +7,7 @@
 	Entropy of ACTION indicates information content can be gained
 
 	IG for HAS a JOB
+{'yes': 6, 'no': 4}
 	HAS a JOB probabilities: : {'yes': 0.6, 'no': 0.4}
 	E(S_HAS a JOB, yes)
 		total for HAS a JOB, yes: 6
@@ -24,6 +25,7 @@
 	IG(S_ACTION, HAS a JOB)= 0.01997309402197489
 
 	IG for HAS an INSURANCE
+{'yes': 2, 'no': 8}
 	HAS an INSURANCE probabilities: : {'yes': 0.2, 'no': 0.8}
 	E(S_HAS an INSURANCE, yes)
 		total for HAS an INSURANCE, yes: 2
@@ -42,6 +44,7 @@
 	IG(S_ACTION, HAS an INSURANCE)= 0.17095059445466854
 
 	IG for VOTES
+{'yes': 6, 'no': 4}
 	VOTES probabilities: : {'yes': 0.6, 'no': 0.4}
 	E(S_VOTES, yes)
 		total for VOTES, yes: 6
@@ -64,15 +67,24 @@
 		HAS a JOB: 0.01997309402197489
 		HAS an INSURANCE: 0.17095059445466854
 		VOTES: 0.9709505944546686
-	Greatest is VOTES
+	Greatest IG is VOTES
 	Adding VOTES as root
 
 
 ------------ R E S U L T I N G  T R E E ------------
 Node('/VOTES')
+possible Children['yes', 'no']
 
 
 	----- Creating subset for branch yes -----
+  HAS a JOB HAS an INSURANCE VOTES       ACTION
+0       yes              yes   yes  leave-alone
+1       yes               no   yes  leave-alone
+2        no               no   yes  leave-alone
+3       yes              yes   yes  leave-alone
+4       yes               no   yes  leave-alone
+5        no               no   yes  leave-alone
+Labels to use: ['HAS a JOB', 'HAS an INSURANCE', 'ACTION']
 
 		---------- Performing ID3 for: VOTES_yes, Layer = 1 ----------
 
@@ -91,6 +103,12 @@ Node('/VOTES')
 
 
 	----- Creating subset for branch no -----
+  HAS a JOB HAS an INSURANCE VOTES      ACTION
+0       yes               no    no  force-into
+1        no               no    no  force-into
+2       yes               no    no  force-into
+3        no               no    no  force-into
+Labels to use: ['HAS a JOB', 'HAS an INSURANCE', 'ACTION']
 
 		---------- Performing ID3 for: VOTES_no, Layer = 1 ----------
 
